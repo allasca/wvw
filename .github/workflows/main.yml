@@ -16,7 +16,7 @@ jobs:
           channel: stable
       - name: Install Dependencies
         run: flutter pub get
-        # working-directory: ./example
+        #working-directory: ./example
       - name: Build Web
         run: flutter build web --base-href "/wvw/"
         #working-directory: ./example
