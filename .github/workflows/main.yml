@@ -26,7 +26,7 @@ jobs:
           git init
           git config user.name "allasca"
           git config user.email "y.allasca@gmail.com"
-          git remote add origin https://${{secrets.key_action}}@github.com/allasca/web_terminal.git
+          git remote add origin https://${{secrets.key_action}}@github.com/allasca/wvw.git
           git checkout -b gh-pages
           git add .
           git commit -m "Deployed Github Pages"
