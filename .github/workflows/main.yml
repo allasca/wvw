@@ -1,0 +1,33 @@
+name: GH-Pages
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - name: Install Dependencies
+        run: flutter pub get
+        #working-directory: ./example
+      - name: Build Web
+        run: flutter build web --base-href "/wvw/"
+        #working-directory: ./example
+      - name: Deploy
+        run: |
+          cd build/web
+          git init
+          git config user.name "allasca"
+          git config user.email "y.allasca@gmail.com"
+          git remote add origin https://${{secrets.key_action}}@github.com/allasca/web_terminal.git
+          git checkout -b gh-pages
+          git add .
+          git commit -m "Deployed Github Pages"
+          git push --force origin gh-pages
